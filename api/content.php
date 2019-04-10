@@ -21,7 +21,7 @@ if ($user_statement->rowCount() != 1) {
 
 $user = $user_statement->fetch(PDO::FETCH_ASSOC);
 
-$statement = $datbase->prepare("SELECT `content`.`id`, `content`.`feed_id`, `content`.`title`, `content`.`description`, `content`.`link`, `content`.`date` FROM `content` INNER JOIN `user_feed` ON `user_feed`.`feed_id` = `feed`.`id` WHERE `user_feed`.`user_id` = :user_id");
+$statement = $database->prepare("SELECT `content`.`id`, `content`.`feed_id`, `content`.`title`, `content`.`description`, `content`.`link`, `content`.`date` FROM `content` INNER JOIN `user_feed` ON `user_feed`.`feed_id` = `feed`.`id` WHERE `user_feed`.`user_id` = :user_id");
 $statement->execute([":user_id" => $user["id"]]);
 
 $articles = [];
