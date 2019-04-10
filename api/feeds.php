@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $feed_id = $result["id"];
     } else {
-        $insert_statement = $datbase->prepare("INSERT INTO `feed` (`url`) VALUES (:url)");
+        $insert_statement = $database->prepare("INSERT INTO `feed` (`url`) VALUES (:url)");
         $insert_statement->execute([
             ":url" => $url,
         ]);
