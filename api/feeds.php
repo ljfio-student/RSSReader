@@ -1,6 +1,7 @@
 <?php
 if (!isset($_COOKIE["session"])) {
     // Not authorised
+    exit(0);
 }
 
 include('../database.php');
@@ -12,6 +13,7 @@ $user_statement->execute([":token" => $token]);
 
 if ($user_statement->rowCount() != 1) {
     // Not authenticated
+    exit(0);
 }
 
 $session = $user_statement->fetch(PDO::FETCH_ASSOC);

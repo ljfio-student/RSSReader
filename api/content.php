@@ -2,10 +2,12 @@
 
 if ($_SERVER["REQUEST_METHOD"] != "GET") {
     // Wrong request method
+    exit(0);
 }
 
 if (!isset($_COOKIE["session"])) {
     // Not authorised
+    exit(0);
 }
 
 include('../database.php');
