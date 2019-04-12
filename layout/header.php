@@ -31,6 +31,11 @@
                         </li>
                         <? } ?>
                     </ul>
+                    <? if (isset($_COOKIE["session"])) { ?>
+                    <form class="form-inline">
+                        <button class="btn btn-outline-success my-2 my-sm-0" id="refresh-feed">Refresh</button>
+                    </form>
+                    <? } ?>
                 </div>
             </div>
         </nav>
