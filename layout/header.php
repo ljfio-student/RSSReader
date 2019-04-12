@@ -29,6 +29,10 @@
                         <li class="nav-item">
                             <a href="/register.php" class="nav-link">Register</a>
                         </li>
+                        <? } else { ?>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="show-feeds">Feeds</a>
+                        </li>
                         <? } ?>
                     </ul>
                     <? if (isset($_COOKIE["session"])) { ?>
