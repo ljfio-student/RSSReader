@@ -22,11 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Add a URL to our user's feed
     $url = $_POST["url"];
 
+    // Find the feed from the database
     $select_statement = $database->prepare("SELECT `id` FROM `feed` WHERE `url` = :url LIMIT 0, 1");
     $select_statement->execute([
         ":url" => $url,
     ]);
 
+    // If another user has already subscribed to the feed, we should get an ID back
     if ($select_statement->rowCount() == 1)  {
         $result = $select_statement->fetch(PDO::FETCH_ASSOC);
 
@@ -40,11 +42,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $feed_id = $database->lastInsertId();
     }
 
-    $statement = $database->prepare("INSERT INTO `user_feed` (`user_id`, `feed_id`) VALUES (:user_id, :feed_id)");
-    $statement->execute([
+    // Check if the current user is already subscribed
+    $subscribed_statement = $database->prepare("SELECT `id` FROM `user_feed` WHERE `feed_id` = :user_id AND `user_id` = :feed_id");
+    $subscribed_statement->execute([
         ":user_id" => $session["user_id"],
         ":feed_id" => $feed_id,
     ]);
+
+    if ($subscribed_statement->rowCount() == 0) {
+        $statement = $database->prepare("INSERT INTO `user_feed` (`user_id`, `feed_id`) VALUES (:user_id, :feed_id)");
+        $statement->execute([
+            ":user_id" => $session["user_id"],
+            ":feed_id" => $feed_id,
+        ]);
+    }
 
     echo json_encode([
         "success" => true,
