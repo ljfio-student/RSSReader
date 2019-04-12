@@ -33,6 +33,7 @@ if (!isset($_COOKIE["session"])) {
             <h5 class="card-title">{{title}}</h5>
             <p class="card-text">{{description}}</p>
             <p class="card-text"><small class="text-muted">{{date}}</small></p>
+            <a href="{{link}}" target="_blank" class="card-link">View</a>
         </div>
     </div>
 </div>
