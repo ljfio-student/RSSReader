@@ -41,7 +41,6 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             ":guid" => $article["guid"],
         ]);
 
-
         // If the article does not exist, or the date is different (e.g. updated)
         if ($exist_statement->rowCount() == 0) {
             $insert_statement = $database->prepare("INSERT INTO `content` (`feed_id`, `title`, `description`, `link`, `guid`, `date`) VALUES (:feed_id, :title, :description, :link, :guid, :date)");
@@ -72,3 +71,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
         }
     }
 }
+
+echo json_encode([
+    "success" => true,
+]);
