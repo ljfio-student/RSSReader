@@ -36,7 +36,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
         "id" => $row["id"],
         "feed_id" => $row["feed_id"],
         "title" => $row["title"],
-        "decription" => $row["description"],
+        "description" => $row["description"],
         "link" => $row["link"],
         "date" => $row["date"],
     ]);
