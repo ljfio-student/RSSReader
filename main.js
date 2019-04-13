@@ -69,7 +69,6 @@ $(function() {
         $.ajax({
             method: "POST",
             url: "/api/feeds.php",
-            contentType: "json",
             data: $("#new-feed-form").serializeArray(),
             dataType: "json"
         }).done(function(result) {
